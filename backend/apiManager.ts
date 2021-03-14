@@ -28,7 +28,7 @@ class ApiManager {
                 "isTeacher": isTeacher,
                 "lessonName": "Lesson name",
                 "couseName": "Course Name",
-                "redirectUrl": `https://dev-${config.site_env_url}.com`,
+                "redirectUrl": `https://dev-${config.site_env_url}`,
                 "endclassUrl": "",
                 "logoSource": config.site_logo_url,
                 "roomId": `${roomId}`,
