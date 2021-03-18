@@ -49,6 +49,10 @@ class Bot {
         return Promise.all(this.pages.map(page => page.goToUrl()));
     }
 
+    turnMicAndCameraOn(page) {
+        return page.turnMicAndCameraOn()
+    }
+
     allTurnMicAndCameraOn() {
         return Promise.all(this.pages.map(page => page.turnMicAndCameraOn()))
     }
@@ -93,7 +97,8 @@ class Bot {
         this.sendToClient('bot:planEnd');
         this.planEnd(duration, true)
         await this.waitSeconds(pageLoadTimeout);
-        await this.allTurnMicAndCameraOn();
+       // await this.allTurnMicAndCameraOn();
+       await this.turnMicAndCameraOn(this.pages[0]);
     }
 
     async planEnd(time, sessionTimer) {

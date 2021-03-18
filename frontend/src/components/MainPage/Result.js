@@ -6,7 +6,7 @@ import {Chart} from '../Chart'
 
 let openedCollabsiblesUser = {};
 let openedCollabsiblesRoom = {};
-const MOST_VIDEOS_ENABLED = 10;
+const MOST_VIDEOS_ENABLED = 1;
 
 function Result(props) {
     const [autoCollapse, setAutoCollapse] = useState(false);
@@ -55,13 +55,14 @@ function Result(props) {
     function renderUsers(roomKey, usersInRoom, {probeId, num}) {
         const elementKey = `${roomKey}/user${probeId}`;
         const wasOpenned = openedCollabsiblesUser[elementKey];
+        const userMustSeeVideosCount = MOST_VIDEOS_ENABLED > usersInRoom ? usersInRoom : MOST_VIDEOS_ENABLED;
         return <li className={classnames({['active removeTransition']:wasOpenned})} 
                     onClick={(e)=>handleClickCollapsible(elementKey, e)} 
                     name={elementKey}
                      key={elementKey}>
                     <div className="collapsible-header">
                         <div className='resultUserName'>{'user'+(+probeId+1)}</div>
-                        <div className='resultUserStat'>Videos: {`${num}/${usersInRoom}`} 
+                        <div className='resultUserStat'>Videos: {`${num}/${userMustSeeVideosCount}`} 
                         {num === usersInRoom && <i className="material-icons doneIcon">done</i>}
                         {props.screenshots[elementKey] && <div className='resultUserStat'>{props.screenshots[elementKey].length}<i className='material-icons'>photo_library</i></div>}
                         </div>
